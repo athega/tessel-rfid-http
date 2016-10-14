@@ -1,0 +1,34 @@
+{
+  "name": "tessel-rfid-http",
+  "version": "0.0.1",
+  "description": "A Tessel module for sending rfid events to an endpoint",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "babel tessel/src -d tessel/lib && t2 run tessel/lib/index.js",
+    "lint": "eslint tessel/src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/athega/tessel-rfid-http.git"
+  },
+  "keywords": [
+    "tessel",
+    "rfid",
+    "http"
+  ],
+  "author": "Christian Lizell <christian.lizell@athega.se> (http://athega.se/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/athega/tessel-rfid-http/issues"
+  },
+  "homepage": "https://github.com/athega/tessel-rfid-http#readme",
+  "dependencies": {
+    "rfid-pn532": "^0.1.9"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "eslint": "^3.7.1"
+  }
+}
