@@ -1,8 +1,8 @@
-#### Installation
+### Installation
 
 `npm install tessel-rfid-http`
 
-#### Optional preparation
+### Optional preparation
 
 If you do not have the Tessel CLI:
 
@@ -16,6 +16,6 @@ If you are working with multiple tessels it might be a good idea to give it a de
 
 `t2 rename photobooth`
 
-#### Run the RFID scanner
+### Run the RFID scanner
 
 `npm start`
