@@ -1,16 +1,27 @@
 import tessel from 'tessel';
 import rfidlib from 'rfid-pn532';
 
-const rfid = rfidlib.use(tessel.port.A);
+import { subject } from './config';
+import log, { error } from './logger';
+import { resetLeds, ledsToReady, ledsToError } from './leds';
+import register from './register';
 
-rfid.on('ready', (version) => {
-    console.log('Ready to read RFID card', version);
+const RFID = rfidlib.use(tessel.port.A);
 
-    rfid.on('data', (card) => {
-        console.log('UID:', card.uid.toString('hex'));
+resetLeds();
+
+RFID.on('ready', () => {
+    log('Ready to read RFID cards');
+    ledsToReady();
+
+    RFID.on('data', (card) => {
+        const rfid = card.uid.toString('hex');
+        log(`Read card with UID: ${rfid}`);
+        register(subject, rfid);
     });
 });
 
-rfid.on('error', (err) => {
-    console.error(err);
+RFID.on('error', (err) => {
+    error('Scanner error', err);
+    ledsToError();
 });
