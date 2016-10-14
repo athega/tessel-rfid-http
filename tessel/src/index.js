@@ -3,7 +3,7 @@ import rfidlib from 'rfid-pn532';
 
 import { subject } from './config';
 import log, { error } from './logger';
-import { resetLeds, ledsToReady, ledsToError } from './leds';
+import { resetLeds, ledsToReady, ledsToRfidReady, ledsToError } from './leds';
 import register from './register';
 
 const RFID = rfidlib.use(tessel.port.A);
@@ -17,6 +17,7 @@ RFID.on('ready', () => {
     RFID.on('data', (card) => {
         const rfid = card.uid.toString('hex');
         log(`Read card with UID: ${rfid}`);
+        ledsToRfidReady();
         register(subject, rfid);
     });
 });

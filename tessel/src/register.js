@@ -1,11 +1,21 @@
 import request from 'request';
 
-import { endpoint, endpointMethod, apiKey } from './config';
+import { endpoint, endpointMethod, endpointQueryTemplate, apiKey } from './config';
 import log, { error } from './logger';
-import { ledsToRegistered, ledsToRegisterError } from './leds';
+import { resetLeds, ledsToRegistered, ledsToRegisterError } from './leds';
+
+const buildQueryUrl = (parameters = {}) => {
+    let query = endpointQueryTemplate;
+    for (const name in parameters) {
+        log(`Replacing \${${name}} with '${parameters[name]}'`);
+        query = query.replace(new RegExp(`\\$\\{${name}\\}`, 'g'), encodeURIComponent(parameters[name]));
+    }
+
+    return query;
+};
 
 export default (subject, rfid) => {
-    const url = `${endpoint}?subj=${encodeURIComponent(subject)}&rfid=${encodeURIComponent(rfid)}`;
+    const url = endpoint + buildQueryUrl({ subject, rfid });
 
     log(`Going to ${endpointMethod} to ${url}`);
     request({
@@ -21,7 +31,6 @@ export default (subject, rfid) => {
             return;
         }
 
-        log('Got response with headers', response.headers);
         if (response.statusCode < 200 && response.statusCode > 299) {
             error(`An error occurred when registering event at ${url}. Got status ${response.statusCode} ${response.statusMessage}.`);
             ledsToRegisterError();
@@ -30,5 +39,6 @@ export default (subject, rfid) => {
 
         log('Got body', body);
         ledsToRegistered();
+        setTimeout(resetLeds, 1000);
     });
 };

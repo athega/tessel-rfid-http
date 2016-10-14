@@ -4,7 +4,6 @@
   "description": "A Tessel module for sending rfid events to an endpoint",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
     "start": "babel tessel/src config.js -d tessel/lib && t2 run tessel/lib/index.js",
     "lint": "eslint tessel/src",
     "postinstall": "(cd tessel; npm install)"

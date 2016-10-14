@@ -25,10 +25,18 @@ export const ledsToError = () => {
     ERR.on();
 };
 
+// RFID
+export const ledsToRfidReady = () => {
+    resetLeds();
+    LED0.on();
+    WLAN.on();
+};
+
 // Register
 export const ledsToRegistered= () => {
     resetLeds();
-    ERR.on();
+    LED0.on();
+    LED1.on();
     WLAN.on();
 };
 
