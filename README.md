@@ -19,3 +19,7 @@ If you are working with multiple tessels it might be a good idea to give it a de
 ### Run the RFID scanner
 
 `npm start`
+
+### Push the program to the connected Tessel
+
+`npm push`
