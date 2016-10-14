@@ -16,6 +16,7 @@ RFID.on('ready', () => {
 
     RFID.on('data', (card) => {
         const rfid = card.uid.toString('hex');
+
         log(`Read card with UID: ${rfid}`);
         ledsToRfidReady();
         register(subject, rfid);

@@ -33,7 +33,7 @@ export const ledsToRfidReady = () => {
 };
 
 // Register
-export const ledsToRegistered= () => {
+export const ledsToRegistered = () => {
     resetLeds();
     LED0.on();
     LED1.on();

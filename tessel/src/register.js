@@ -4,10 +4,11 @@ import { endpoint, endpointMethod, endpointQueryTemplate, apiKey } from './confi
 import log, { error } from './logger';
 import { resetLeds, ledsToRegistered, ledsToRegisterError } from './leds';
 
-let LAST_SEEN_RFID = undefined;
+let LAST_SEEN_RFID = '';
 
 const buildQueryUrl = (parameters = {}) => {
     let query = endpointQueryTemplate;
+
     for (const name in parameters) {
         log(`Replacing \${${name}} with '${parameters[name]}'`);
         query = query.replace(new RegExp(`\\$\\{${name}\\}`, 'g'), encodeURIComponent(parameters[name]));
