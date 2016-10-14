@@ -4,6 +4,8 @@ import { endpoint, endpointMethod, endpointQueryTemplate, apiKey } from './confi
 import log, { error } from './logger';
 import { resetLeds, ledsToRegistered, ledsToRegisterError } from './leds';
 
+let LAST_SEEN_RFID = undefined;
+
 const buildQueryUrl = (parameters = {}) => {
     let query = endpointQueryTemplate;
     for (const name in parameters) {
@@ -15,6 +17,12 @@ const buildQueryUrl = (parameters = {}) => {
 };
 
 export default (subject, rfid) => {
+    if (rfid === LAST_SEEN_RFID) {
+        log(`Skipping RFID ${rfid} - already scanned`);
+        resetLeds();
+        return;
+    }
+
     const url = endpoint + buildQueryUrl({ subject, rfid });
 
     log(`Going to ${endpointMethod} to ${url}`);
@@ -39,6 +47,8 @@ export default (subject, rfid) => {
 
         log('Got body', body);
         ledsToRegistered();
+        LAST_SEEN_RFID = rfid;
+
         setTimeout(resetLeds, 1000);
     });
 };
