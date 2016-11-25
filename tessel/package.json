@@ -1,7 +1,9 @@
 {
   "main": "lib/index.js",
   "dependencies": {
+    "audio-vs1053b": "^0.2.0",
     "request": "^2.75.0",
-    "rfid-pn532": "^0.1.9"
+    "rfid-pn532": "^0.1.9",
+    "tessel-av": "^0.14.0"
   }
 }
