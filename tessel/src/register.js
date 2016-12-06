@@ -4,6 +4,7 @@ import { endpoint, endpointMethod, endpointQueryTemplate, apiKey } from './confi
 import log, { error } from './logger';
 import { resetLeds, ledsToRegistered, ledsToRegisterError } from './leds';
 import { playSuccess, playFailure } from './audio';
+import { triggerFlash } from './relay';
 
 let LAST_SEEN_RFID = '';
 
@@ -54,6 +55,7 @@ export default (subject, rfid) => {
         LAST_SEEN_RFID = rfid;
 
         playSuccess();
+        triggerFlash();
         setTimeout(resetLeds, 1000);
     });
 };
