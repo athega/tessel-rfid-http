@@ -6,8 +6,5 @@
     "request": "^2.75.0",
     "rfid-pn532": "^0.1.9",
     "tessel-av": "^0.14.0"
-  },
-  "devDependencies": {
-    "t2-cli": "^0.1.16"
   }
 }

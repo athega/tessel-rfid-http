@@ -1,12 +1,8 @@
 ### Installation
 
-`npm install tessel-rfid-http`
+`npm install`
 
 ### Optional preparation
-
-If you do not have the Tessel CLI:
-
-`npm install t2-cli -g`
 
 If you need it to be connected to wifi, run the following command.
 
@@ -18,8 +14,8 @@ If you are working with multiple tessels it might be a good idea to give it a de
 
 ### Run the RFID scanner
 
-`npm start`
+`npm run start`
 
 ### Push the program to the connected Tessel
 
-`npm push`
+`npm run push`

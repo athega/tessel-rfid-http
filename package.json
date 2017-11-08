@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "babel tessel/src config.js -d tessel/lib && cp -r tessel/sounds tessel/lib",
-    "start": "npm run build && (cd tessel; t2 run lib/index.js)",
-    "push": "npm run build &&  (cd tessel; t2 push lib/index.js)",
+    "start": "npm run build && t2 run tessel/lib/index.js",
+    "push": "npm run build &&  t2 push tessel/lib/index.js",
     "lint": "eslint tessel/src",
     "postinstall": "(cd tessel; npm install)"
   },
@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
-    "eslint": "^3.7.1"
+    "eslint": "^3.7.1",
+    "t2-cli": "^0.1.16"
   }
 }
